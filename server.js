@@ -19,12 +19,12 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use((req, res, next) => {
-    res.render('maintenence.hbs', {
-        pageTitle: "We'll be right back",
-        paragraph: 'The site is currently updated'
-    })
-})
+// app.use((req, res, next) => {
+//     res.render('maintenence.hbs', {
+//         pageTitle: "We'll be right back",
+//         paragraph: 'The site is currently updated'
+//     })
+// })
 
 app.use(express.static(__dirname + '/public'))
 
@@ -39,10 +39,8 @@ hbs.registerHelper('screamIt', (text = "hello") => {
 
 app.get('/', (req, res) => {
    res.render('home.hbs', {
-       homeTitle: 'HomePage',
        pageTitle: 'Home Page',
-       welcomeText: 'Welcome to my page',
-       welcomeMessage: 'why is thisss ?'
+       welcomeMessage: 'Welcome to my page'
    })
 })
 
@@ -55,6 +53,12 @@ app.get('/about', (req, res) => {
 app.get('/bad', (req, res) => {
     res.send({
         errorMessage: 'Unable to handle request'
+    })
+})
+
+app.get('/projects', (req, res) => {
+    res.render('projects.hbs', {
+        pageTitle: 'Projects'
     })
 })
 app.listen(port, () => {
